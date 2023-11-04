@@ -1,17 +1,22 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import { Button } from '@mantine/core';
 import '@mantine/core/styles.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Home } from './pages/Home';
+import { DeliveryDetails } from './pages/DeliveryDetails';
+import { BadgeCard } from './components/BadgeCard';
+import { FormComponent } from './components/Form';
+
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <Home/>
+    <Router>
+      <Routes>
+      <Route path='/' element={<Home/>}/>
+      <Route path='/delivery-details' element={<DeliveryDetails/>}/>
+      <Route path='/success' element={<BadgeCard/>}/>
+      </Routes>
+    </Router>
     </>
   )
 }

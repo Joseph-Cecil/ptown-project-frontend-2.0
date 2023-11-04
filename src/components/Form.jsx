@@ -1,23 +1,30 @@
 import { TextInput, Textarea, SimpleGrid, Group, Title, Button } from '@mantine/core';
-import { useForm } from '@mantine/form';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export function FormComponent() {
-  const form = useForm({
-    initialValues: {
-      name: '',
-      email: '',
-      subject: '',
-      message: '',
-    },
-    validate: {
-      name: (value) => value.trim().length < 2,
-      email: (value) => !/^\S+@\S+$/.test(value),
-      subject: (value) => value.trim().length === 0,
-    },
-  });
+  const history = useNavigate();
+  const DEFAULT_FORM_OBJECT = {
+    name: '',
+    price: NaN,
+    order:'',
+    location: '',
+    areaName: '',
+    houseNum: '',
+    phoneNum: NaN,
+  };
+
+  const [formData, setFormData] = useState(DEFAULT_FORM_OBJECT);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData )
+    // Assuming formData is the data collected in Home component
+    history('/delivery-details', { state: { orderData: formData } });
+  };
 
   return (
-    <form onSubmit={form.onSubmit(() => {})}>
+    <form onSubmit={handleSubmit}>
       <Title
         order={2}
         size="h1"
@@ -30,32 +37,50 @@ export function FormComponent() {
 
       <SimpleGrid cols={{ base: 1, sm: 2 }} mt="xl">
         <TextInput
+        required
           label="Name"
           placeholder="Your name"
           name="name"
           variant="filled"
-          {...form.getInputProps('name')}
+          onChange={(e) => {
+            setFormData({
+              ...formData,
+              name: e.currentTarget.value
+            });
+          }}
         />
         <TextInput
-          label="Location"
+          label="Location (Optional)"
         //   required={false}
           placeholder="Where Should I Buy Your Order"
-          name="email"
+          name="location"
           variant="filled"
-          {...form.getInputProps('location')}
+          onChange={(e) => {
+            setFormData({
+              ...formData,
+              location: e.currentTarget.value
+            });
+          }}
         />
       </SimpleGrid>
 
       <TextInput
+      required
         label="Price"
         type='Number'
         placeholder="Enter Total price of Your Order. Eg.10"
         mt="md"
         name="price"
         variant="filled"
-        {...form.getInputProps('number')}
+        onChange={(e) => {
+          setFormData({
+            ...formData,
+            price: e.currentTarget.value
+          });
+        }}
       />
       <Textarea
+      required
         mt="md"
         label="Order"
         placeholder="Your Order."
@@ -64,7 +89,12 @@ export function FormComponent() {
         autosize
         name="order"
         variant="filled"
-        {...form.getInputProps('message')}
+        onChange={(e) => {
+          setFormData({
+            ...formData,
+            order: e.currentTarget.value
+          });
+        }}
       />
 
       <Group justify="center" mt="xl">
