@@ -1,5 +1,9 @@
 import { useDisclosure } from '@mantine/hooks';
 import { AppShell, Burger, Group, Skeleton } from '@mantine/core';
+import { ActionToggle } from '../components/LightDarkThemeButton';
+import { FormComponent } from '../components/Form';
+
+
 
 export function Home() {
   const [opened, { toggle }] = useDisclosure();
@@ -11,9 +15,9 @@ export function Home() {
       padding="md"
     >
       <AppShell.Header>
-        <Group h="100%" px="md">
+        <Group h="100%" px="md" style={{display: "flex", justifyContent: "space-between"}}>
           <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-          {/* <MantineLogo size={30} /> */}
+         <ActionToggle />
         </Group>
       </AppShell.Header>
       <AppShell.Navbar p="md">
@@ -24,7 +28,7 @@ export function Home() {
             <Skeleton key={index} h={28} mt="sm" animate={false} />
           ))}
       </AppShell.Navbar>
-      <AppShell.Main>Main</AppShell.Main>
+      <AppShell.Main style={{height: "100vh"}}><FormComponent/></AppShell.Main>
     </AppShell>
   );
 }
