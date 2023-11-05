@@ -1,10 +1,8 @@
 import './App.css'
 import '@mantine/core/styles.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
-import { Home } from './pages/Home';
 import { DeliveryDetails } from './pages/DeliveryDetails';
-import { BadgeCard } from './components/BadgeCard';
 import { FormComponent } from './components/Form';
 import CardComponent from './components/CardComponent';
 

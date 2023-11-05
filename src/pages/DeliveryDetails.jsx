@@ -1,6 +1,6 @@
 import { TextInput, SimpleGrid, Group, Title, Button, Notification } from '@mantine/core';
 import { useEffect, useState } from 'react';
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export function DeliveryDetails() {

@@ -1,7 +1,7 @@
 import { ThemeIcon, Text, Avatar, Timeline } from '@mantine/core';
 import { IconSun, IconVideo } from '@tabler/icons-react';
 
-function Time() {
+export function Time() {
   return (
     <Timeline bulletSize={24}>
       <Timeline.Item title="Default bullet">

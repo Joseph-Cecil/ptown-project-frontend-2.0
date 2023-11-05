@@ -1,7 +1,6 @@
 import { useDisclosure } from '@mantine/hooks';
 import { AppShell, Burger, Group, Skeleton } from '@mantine/core';
 import { ActionToggle } from '../components/LightDarkThemeButton';
-import { Outlet } from 'react-router-dom';
 
 
 
