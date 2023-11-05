@@ -24,7 +24,7 @@ export function FormComponent() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} style={{marginTop:120, overflow:"hidden"}}>
       <Title
         order={2}
         size="h1"

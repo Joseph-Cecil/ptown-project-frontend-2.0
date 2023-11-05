@@ -72,7 +72,7 @@ useEffect(() => {
 
 
   return (<>
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} style={{marginTop: 150, overflow:"hidden"}}>
       <Title
         order={2}
         size="h1"
@@ -103,7 +103,7 @@ useEffect(() => {
 
       <TextInput
         label="Phone Number"
-        
+        required
         type='Number'
         placeholder="Eg. 0556659523"
         mt="md"

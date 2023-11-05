@@ -1,9 +1,9 @@
-import { CardsCarousel } from '../components/BadgeCard'
+import { CardCompnent } from '../components/CardComponent'
 
 const Success = () => {
   return (
     <div>
-      <CardsCarousel/>
+      <CardCompnent/>
     </div>
   )
 }

@@ -12,7 +12,7 @@ export function Home() {
 
   return (<>
     <AppShell
-      header={{ height: 60 }}
+      header={{ height: 60}}
       navbar={{ width: 300, breakpoint: 'sm', collapsed: { mobile: !opened } }}
       padding="md"
     >
@@ -30,7 +30,7 @@ export function Home() {
             <Skeleton key={index} h={28} mt="sm" animate={false} />
           ))}
       </AppShell.Navbar>
-      <AppShell.Main style={{height: "100vh"}}><Outlet/></AppShell.Main>
+      <AppShell.Main style={{height:50}}></AppShell.Main>
     </AppShell>
     </>
   );
