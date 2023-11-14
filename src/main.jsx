@@ -5,9 +5,12 @@ import App from './App.jsx'
 import './index.css'
 import { MantineProvider } from '@mantine/core';
 import '@mantine/notifications/styles.css';
+import { store } from './App/store';
+import { Provider } from 'react-redux';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <Provider store={store}>
     <MantineProvider>
     <Router>
       <Routes>
@@ -15,5 +18,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       </Routes>
     </Router>
     </MantineProvider>
-  </React.StrictMode>,
+    </Provider>
+  </React.StrictMode>
 )

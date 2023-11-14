@@ -51,8 +51,7 @@ export function FormComponent() {
         />
         <TextInput
           label="Location (Optional)"
-        //   required={false}
-          placeholder="Where Should I Buy Your Order"
+          placeholder="Where Should I Get Your Order From?"
           name="location"
           variant="filled"
           onChange={(e) => {
@@ -83,7 +82,7 @@ export function FormComponent() {
       required
         mt="md"
         label="Order"
-        placeholder="Your Order."
+        placeholder='Eg.1 Rice 2gh, chicken 5gh no pepper Eg.2 One Bag of Cool sachet water Eg.3 Vip spaghetti 15gh 2 packs'
         maxRows={10}
         minRows={5}
         autosize

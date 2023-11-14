@@ -1,11 +1,12 @@
 import { useDisclosure } from '@mantine/hooks';
 import { AppShell, Burger, Group, Skeleton } from '@mantine/core';
 import { ActionToggle } from '../components/LightDarkThemeButton';
+import { Outlet } from 'react-router-dom';
 
 
 
 
-export function Home() {
+export function Dashboard() {
   const [opened, { toggle }] = useDisclosure();
   console.log(" I am rendering the appshell")
 
@@ -29,7 +30,7 @@ export function Home() {
             <Skeleton key={index} h={28} mt="sm" animate={false} />
           ))}
       </AppShell.Navbar>
-      <AppShell.Main></AppShell.Main>
+      <AppShell.Main><Outlet/></AppShell.Main>
     </AppShell>
     </>
   );

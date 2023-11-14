@@ -1,32 +1,34 @@
 import { Badge, Button, Card, Group, Image, Text } from "@mantine/core";
+import {
+  IconHome2
+} from '@tabler/icons-react';
 import { useNavigate } from "react-router-dom";
+
 function CardComponent() {
-
-  const navigate = useNavigate();
-
+  const navigate = useNavigate()
   return (
     <Card shadow="sm" padding="lg" radius="md" withBorder style={{marginTop:180}}>
       <Card.Section>
         <Image
-          src="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80"
+          src="https://th.bing.com/th/id/OIP.A3_kEtzb1hh7SvWs3rn3-gHaHa?pid=ImgDet&rs=1"
           height={160}
           alt="Norway"
         />
       </Card.Section>
 
       <Group justify="space-between" mt="md" mb="xs">
-        <Text fw={500}>You Can call this number to fasten your order</Text>
+        <Text fw={500}>Your Order has been placed successfully</Text>
         <Badge color="pink" variant="light">
-          0543737012
+          Success
         </Badge>
       </Group>
 
       <Text size="sm" c="dimmed">
-        Yoy Order Consist of Order: {}
+        We'll call you to confirm your Order. You can also reach us on 0543737012 to fasten your Order
       </Text>
 
-      <Button onClick={() => {navigate("/")}} variant="light" color="blue" fullWidth mt="md" radius="md">
-        Back To HomePage
+      <Button onClick={()=>{navigate("/")}} variant="light" color="blue" fullWidth mt="md" radius="md">
+        <IconHome2/>Home Page
       </Button>
     </Card>
   );
