@@ -5,6 +5,8 @@ import Layout from "./components/Layout";
 import { DeliveryDetails } from "./pages/DeliveryDetails";
 import { FormComponent } from "./components/Form";
 import CardComponent from "./components/CardComponent";
+import { Login } from "./pages/auth/login";
+import { Register } from "./pages/auth/Register";
 
 function App() {
   return (
@@ -15,7 +17,10 @@ function App() {
           <Route path="delivery-details" element={<DeliveryDetails />} />
           <Route path="/success" element={<CardComponent />} />
         </Route>
-
+        <Route path="auth" element={<Layout/>}>
+          <Route index element={<Login/>}/>
+          <Route path="register" element={<Register/>}/>
+        </Route>
       </Routes>
     </>
   );
