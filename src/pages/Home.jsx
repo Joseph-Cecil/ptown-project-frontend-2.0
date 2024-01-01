@@ -23,10 +23,19 @@ export function Home() {
     try {
       await logoutApiCall().unwrap();
       dispatch(logout());
-      toast("Logged Out Successfully")
       navigate('/auth');
+      toast("Logged Out Successfully")
+      console.log("I have been clicked")
     } catch (err) {
       console.log(err);    }
+  }
+
+  const signInHandler = () => {
+    navigate("/auth");
+  }
+
+  const registerHandler = () => {
+    navigate("/auth/register");
   }
 
   return (<>
@@ -63,7 +72,7 @@ export function Home() {
         <Button variant='filled' onClick={logoutHandler}>Sign Out</Button>
       </Popover.Dropdown>
     </Popover></div>) : (
-            <><div style={{marginTop: 100}}><Button variant='filled'>Sign In</Button> {" "} <Button variant='filed'>Register</Button></div></>
+            <><div style={{marginTop: 100}}><Button variant='filled' onClick={signInHandler}>Sign In</Button> {" "} <Button variant='filed' onClick={registerHandler}>Register</Button></div></>
           )}
           
           

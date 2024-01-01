@@ -11,7 +11,7 @@ import {
   import { useNavigate } from 'react-router-dom';
   import {useDispatch, useSelector} from "react-redux"
   import { useState, useEffect } from 'react';
-  import { useRegisterMutation, useLoginMutation } from '../../slices/usersApiSlice';
+  import { useRegisterMutation } from '../../slices/usersApiSlice';
   import { setCredentials } from '../../slices/authSlice';
   import { toast } from 'react-toastify';
   import { Loader } from '@mantine/core';
@@ -28,14 +28,14 @@ import {
 
  
     // const [register, {isLoading}] = useRegisterMutation();
-    const [login, {isLoading}] = useLoginMutation();
+    const [register, {isLoading}] = useRegisterMutation();
 
     const {userInfo} = useSelector((state) => state.auth);
 
     
   useEffect(() => {
     if(userInfo) {
-      navigate("/orders")
+      navigate("/auth/orders")
     }
   }, [navigate, userInfo]);
     
@@ -48,11 +48,11 @@ import {
     }else{
   
     try {
-      const res = await login({name, email, password}).unwrap();
+      const res = await register({name, email, password}).unwrap();
       dispatch(setCredentials({...res}));
       
       toast("Successfully Logged in, Lets go make Money")
-      navigate('/orders')
+      navigate('/auth/orders')
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }

@@ -7,6 +7,7 @@ import { FormComponent } from "./components/Form";
 import CardComponent from "./components/CardComponent";
 import { Login } from "./pages/auth/login";
 import { Register } from "./pages/auth/Register";
+import { GetOrders } from "./features/orders/GetOrders";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="auth" element={<Layout/>}>
           <Route index element={<Login/>}/>
           <Route path="register" element={<Register/>}/>
+          <Route path="orders" element={<GetOrders/>} />
         </Route>
       </Routes>
     </>

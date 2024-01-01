@@ -29,7 +29,7 @@ export function Login() {
 
   useEffect(() => {
     if(userInfo) {
-      navigate("/orders")
+      navigate("/auth/orders")
     }
   }, [navigate, userInfo]);
   
@@ -38,6 +38,7 @@ export function Login() {
     
     e.preventDefault();
     try {
+      console.log(login);
       const res = await login({email, password}).unwrap();
       dispatch(setCredentials({...res}));
       
