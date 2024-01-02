@@ -8,6 +8,8 @@ import CardComponent from "./components/CardComponent";
 import { Login } from "./pages/auth/login";
 import { Register } from "./pages/auth/Register";
 import { GetOrders } from "./features/orders/GetOrders";
+import { UpdateOrder } from "./pages/updateOrder";
+import { PrivateRoute } from "./components/PrivateRoute";
 
 function App() {
   return (
@@ -21,7 +23,10 @@ function App() {
         <Route path="auth" element={<Layout/>}>
           <Route index element={<Login/>}/>
           <Route path="register" element={<Register/>}/>
+          <Route path="" element={<PrivateRoute/>}>
           <Route path="orders" element={<GetOrders/>} />
+          <Route path="update-order" element={<UpdateOrder/>}/>
+          </Route>
         </Route>
       </Routes>
     </>
