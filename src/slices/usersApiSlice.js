@@ -23,6 +23,13 @@ export const usersApiSlice = apiSlice.injectEndpoints({
                 method: 'POST'
             })
         }),
+        createOrder: builder.mutation({
+            query: (data) => ({
+                url:"api/new-order",
+                method: 'POST',
+                body: data,
+            })
+        }),
         orders: builder.query({
             query: (data) => ({
                 url: `${THE_URL}/orders`,
@@ -33,4 +40,4 @@ export const usersApiSlice = apiSlice.injectEndpoints({
     })
 })
 
-export const {useLoginMutation, useLogoutMutation, useRegisterMutation} = usersApiSlice;
+export const {useLoginMutation, useLogoutMutation, useRegisterMutation, useCreateOrderMutation, useOrdersQuery} = usersApiSlice;

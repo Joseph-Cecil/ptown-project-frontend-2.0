@@ -2,6 +2,7 @@ import { TextInput, SimpleGrid, Group, Title, Button, Notification } from '@mant
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useCreateOrderMutation } from '../slices/usersApiSlice';
 
 export function DeliveryDetails() {
 
@@ -16,6 +17,8 @@ export function DeliveryDetails() {
       houseNum: '',
       phoneNum: null,
     });
+
+    const [creatOrder, {isLoading}] = useCreateOrderMutation();
 
 
 useEffect(() => {
@@ -43,13 +46,13 @@ useEffect(() => {
   // Send the complete order data to your server
   try {
     // Send the complete order data to your server
-    await axios.post('http://localhost:5000/orders', simplifiedData);
+    await creatOrder(simplifiedData);
     
     // Display Mantine notification for successful submission
-    Notification.success({
-      title: 'Success!',
-      description: 'Order submitted successfully.',
-    });
+    // Notification.success({
+    //   title: 'Success!',
+    //   description: 'Order submitted successfully.',
+    // });
 
     // Navigate to "/success" after the notification
     navigate("/success");
@@ -57,10 +60,10 @@ useEffect(() => {
     console.log('Order submitted successfully');
   } catch (error) {
     // Display Mantine notification for submission error
-    Notification.error({
-      title: 'Error!',
-      description: 'There was an error submitting the form.',
-    });
+    // Notification.error({
+    //   title: 'Error!',
+    //   description: 'There was an error submitting the form.',
+    // });
 
     console.error('Error submitting form:', error);
   }
