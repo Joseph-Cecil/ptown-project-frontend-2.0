@@ -1,65 +1,51 @@
-// import { Container, Grid, SimpleGrid, Skeleton, rem } from '@mantine/core';
-
-// const PRIMARY_COL_HEIGHT = rem(300);
-
-// export function GetOrders() {
-//   const SECONDARY_COL_HEIGHT = `calc(${PRIMARY_COL_HEIGHT} / 2 - var(--mantine-spacing-md) / 2)`;
-
-//   return (
-//     <Container my="md" mt={40}>
-//       <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="md">
-//         <Skeleton height={PRIMARY_COL_HEIGHT} radius="md" animate={false} />
-//         <Grid gutter="md">
-//           <Grid.Col>
-//             <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={false} />
-//           </Grid.Col>
-//           <Grid.Col span={6}>
-//             <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={false} />
-//           </Grid.Col>
-//           <Grid.Col span={6}>
-//             <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={false} />
-//           </Grid.Col>
-//         </Grid>
-//       </SimpleGrid>
-//     </Container>
-//   );
-// }
-
-
-
-import { Container, Grid, SimpleGrid, Skeleton, rem } from '@mantine/core';
-import { useOrdersQuery } from '../../slices/usersApiSlice'; // Update with the correct path
-
-const PRIMARY_COL_HEIGHT = rem(300);
-
-// ... (import statements)
+import { Container, Grid, Text, Button } from '@mantine/core';
+import { useOrdersQuery } from '../../slices/usersApiSlice';
 
 export function GetOrders() {
-  const SECONDARY_COL_HEIGHT = `calc(${PRIMARY_COL_HEIGHT} / 2 - var(--mantine-spacing-md) / 2)`;
-
   // Use the useGetUserQuery hook to fetch orders
   const { data: orders, isLoading, isError } = useOrdersQuery();
 
+  const OrderDetails = ({ orders }) => (
+    <Container my="md" mt={40}>
+      <Grid gutter="md">
+        {orders.slice().reverse().map((order) => (
+          <Grid.Col span={12} md={6} lg={4} key={order.id}>
+            <div style={{ border: '1px solid #E3E8EE', borderRadius: '8px', padding: '16px', marginBottom: '20px' }}>
+              <div style={{ marginBottom: '20px' }}>
+                <Text size="lg" weight={700} style={{ marginBottom: '10px' }}>
+                <b><h3>Order Summary</h3></b>
+                </Text>
+                <Text>
+                  <strong>Order:</strong> {order.order} <br />
+                  <strong>Price:</strong> {order.price} <br />
+                  <strong>Location:</strong> {order.location} <br /><br/>
+                </Text>
+              </div>
+              <div>
+                <Text size="lg" weight={700} style={{ marginBottom: '10px' }}>
+                  <hr/><b><h3>Customer Details</h3></b>
+                </Text>
+                <Text>
+                  <strong>Name:</strong> {order.name} <br />
+                  <strong>Area Name:</strong> {order.areaName} <br />
+                  <strong>House Number:</strong> {order.houseNum} <br />
+                  <strong>Phone Number:</strong> {order.phoneNum} <br />
+                  <strong>Is Completed:</strong> {order.isCompleted ? 'Yes' : 'No'} <br />
+                </Text>
+                <Button style={{ marginTop: '10px' }} fullWidth>
+                  View Details
+                </Button>
+              </div>
+            </div>
+          </Grid.Col>
+        ))}
+      </Grid>
+    </Container>
+  );
+
   if (isLoading) {
-    // Loading state with Skeleton placeholders
-    return (
-      <Container my="md" mt={40}>
-        <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="md">
-          <Skeleton height={PRIMARY_COL_HEIGHT} radius="md" animate={false} />
-          <Grid gutter="md">
-            <Grid.Col>
-              <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={false} />
-            </Grid.Col>
-            <Grid.Col span={6}>
-              <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={false} />
-            </Grid.Col>
-            <Grid.Col span={6}>
-              <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={false} />
-            </Grid.Col>
-          </Grid>
-        </SimpleGrid>
-      </Container>
-    );
+    // Loading state without placeholders
+    return null;
   }
 
   if (isError) {
@@ -68,43 +54,5 @@ export function GetOrders() {
   }
 
   // Successfully loaded orders, render the data
-  return (
-    <Container my="md" mt={40}>
-      <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="md">
-        <div>
-          {/* Render primary content with fetched orders */}
-          {orders && (
-            <ul>
-              {orders.map((order) => (
-                <li key={order.id}>
-                  <strong>Order:</strong> {order.order}<br />
-                  <strong>Price:</strong> {order.price}<br />
-                  <strong>Location:</strong> {order.location}<br />
-                  <strong>Name:</strong> {order.name}<br />
-                  <strong>Area Name:</strong> {order.areaName}<br />
-                  <strong>House Number:</strong> {order.houseNum}<br />
-                  <strong>Phone Number:</strong> {order.phoneNum}<br />
-                  <strong>Is Completed:</strong> {order.isCompleted ? 'Yes' : 'No'}<br />
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-        <Grid gutter="md">
-          <Grid.Col>
-            {/* Skeleton placeholder for secondary column */}
-            <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={false} />
-          </Grid.Col>
-          <Grid.Col span={6}>
-            {/* Skeleton placeholder for secondary column */}
-            <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={false} />
-          </Grid.Col>
-          <Grid.Col span={6}>
-            {/* Skeleton placeholder for secondary column */}
-            <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={false} />
-          </Grid.Col>
-        </Grid>
-      </SimpleGrid>
-    </Container>
-  );
+  return <OrderDetails orders={orders} />;
 }

@@ -3,7 +3,7 @@ import { AppShell, Avatar, Burger, Button, Group, Popover, Skeleton, Text } from
 import { ActionToggle } from '../components/LightDarkThemeButton';
 import {useDispatch, useSelector} from 'react-redux';
 import { useLogoutMutation } from '../slices/usersApiSlice';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useLocation} from 'react-router-dom';
 import { logout } from '../slices/authSlice';
 import { toast } from 'react-toastify';
 
@@ -18,6 +18,7 @@ export function Home() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [logoutApiCall] = useLogoutMutation();
+  const location = useLocation();
 
   const logoutHandler = async () => {
     try {
@@ -37,6 +38,10 @@ export function Home() {
   const registerHandler = () => {
     navigate("/auth/register");
   }
+
+  // Check if the current path contains '/auth'
+  const isAuthPage = location.pathname.includes('/auth');
+
 
   return (<>
 
@@ -72,7 +77,16 @@ export function Home() {
         <Button variant='filled' onClick={logoutHandler}>Sign Out</Button>
       </Popover.Dropdown>
     </Popover></div>) : (
-            <><div style={{marginTop: 100}}><Button variant='filled' onClick={signInHandler}>Sign In</Button> {" "} <Button variant='filed' onClick={registerHandler}>Register</Button></div></>
+            <><div style={{marginTop: 100}}>{isAuthPage ? (
+              <>
+                <Button variant="filled" onClick={signInHandler}>
+                  Sign In
+                </Button>{' '}
+                <Button variant="filled" onClick={registerHandler}>
+                  Register
+                </Button>
+              </>
+            ): null}</div></>
           )}
           
           
