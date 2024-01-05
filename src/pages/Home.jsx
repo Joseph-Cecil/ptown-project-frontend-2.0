@@ -77,7 +77,7 @@ export function Home() {
         <Button variant='filled' onClick={logoutHandler}>Sign Out</Button>
       </Popover.Dropdown>
     </Popover></div>) : (
-            <><div style={{marginTop: 100}}>{isAuthPage ? (
+            <><div style={{marginTop: 100}}>
               <>
                 <Button variant="filled" onClick={signInHandler}>
                   Sign In
@@ -86,7 +86,7 @@ export function Home() {
                   Register
                 </Button>
               </>
-            ): null}</div></>
+           </div></>
           )}
           
           
