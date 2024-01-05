@@ -9,5 +9,11 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 3000,
+        proxy: {
+      '/api': {
+        target: 'https://ptbuy-api.onrender.com/',
+        changeOrigin: true
+      }
+    }
   }
 })
