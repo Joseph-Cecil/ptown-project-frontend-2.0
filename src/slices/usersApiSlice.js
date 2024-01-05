@@ -1,18 +1,19 @@
 import { apiSlice } from "./apiSlice";
+const BaseUrl = "https://ptbuy-api.onrender.com/";
 const THE_URL = 'api/users';
 
 export const usersApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         login: builder.mutation({
             query: (data) => ({
-                url: `${THE_URL}/auth`,
+                url: `${BaseUrl}${THE_URL}/auth`,
                 method: 'POST',
                 body: data
             })
         }),
         register: builder.mutation({
             query: (data) => ({
-                url: THE_URL,
+                url: `${BaseUrl}${THE_URL}`,
                 method: 'POST',
                 body: data,
             })
@@ -25,14 +26,14 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         }),
         createOrder: builder.mutation({
             query: (data) => ({
-                url:"api/new-order",
+                url:`${BaseUrl}api/new-order`,
                 method: 'POST',
                 body: data,
             })
         }),
         orders: builder.query({
             query: (data) => ({
-                url: `${THE_URL}/orders`,
+                url: `${BaseUrl}${THE_URL}/orders`,
                 method: "GET",
                 body: data
             })
