@@ -5,12 +5,13 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 8080,
-    proxy: {
-      '/api': {
-        target: 'https://ptbuy-api.onrender.com/',
-        changeOrigin: true,
-      },
-    },
+    port: 3000,
+    // proxy: {
+    //   '/api': {
+    //     target: 'http://localhost:7000/',
+    //     changeOrigin: true,
+    //     rewrite: (path) => path.replace(/^\/api/, '/api*')
+    //   },
+    // },
   },
 });
